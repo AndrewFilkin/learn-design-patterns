@@ -9,4 +9,5 @@ Route::get('/', function () {
 
 Route::controller(TestPatternController::class)->group(function () {
     Route::get('/factory', 'factory');
+    Route::get('/singleton', 'singleton');
 });

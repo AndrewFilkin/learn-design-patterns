@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\Factory\BicycleFactory;
 use App\Services\Factory\CarFactory;
-use App\Services\Factory\TestPatternService;
+use App\Services\Singleton\Singleton;
 
 
 class TestPatternController extends Controller
@@ -21,4 +21,11 @@ class TestPatternController extends Controller
         echo $car->drive() . ' ' . '</br>';
         echo $bicycle->drive();
     }
+
+    public function singleton()
+    {
+        $singleton = Singleton::getInstance();
+        echo $singleton->dbConnetor;
+    }
+
 }
