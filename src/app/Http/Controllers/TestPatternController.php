@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Services\Factory\BicycleFactory;
 use App\Services\Factory\CarFactory;
+use App\Services\Factory_Method\ConcreteCreatorA;
+use App\Services\Factory_Method\Run;
 use App\Services\Singleton\Singleton;
 
 
 class TestPatternController extends Controller
 {
+
 
     public function factory()
     {
@@ -26,6 +29,12 @@ class TestPatternController extends Controller
     {
         $singleton = Singleton::getInstance();
         echo $singleton->dbConnetor;
+    }
+
+    public function factoryMethod()
+    {
+        $product = new Run();
+        $product->clientCode(new ConcreteCreatorA());
     }
 
 }
