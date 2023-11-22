@@ -7,6 +7,8 @@ use App\Services\Factory\CarFactory;
 use App\Services\Factory_Method\ConcreteCreatorA;
 use App\Services\Factory_Method\Run;
 use App\Services\Singleton\Singleton;
+use App\Services\AbstractFactory\MacFactory;
+use App\Services\AbstractFactory\Run as RunAbstractFactory;
 
 
 class TestPatternController extends Controller
@@ -35,6 +37,13 @@ class TestPatternController extends Controller
     {
         $product = new Run();
         $product->clientCode(new ConcreteCreatorA());
+    }
+
+    public function abstractFactory()
+    {
+        $run = new RunAbstractFactory();
+        $macFactory = new MacFactory();
+        $run->createUI($macFactory);
     }
 
 }
