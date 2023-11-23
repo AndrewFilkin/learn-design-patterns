@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Builder\ConcreteBuilder;
+use App\Services\Builder\Director;
 use App\Services\Factory\BicycleFactory;
 use App\Services\Factory\CarFactory;
 use App\Services\Factory_Method\ConcreteCreatorA;
@@ -44,6 +46,16 @@ class TestPatternController extends Controller
         $run = new RunAbstractFactory();
         $macFactory = new MacFactory();
         $run->createUI($macFactory);
+    }
+
+    public function builder()
+    {
+        $builder = new ConcreteBuilder();
+        $director = new Director();
+
+        $director->construct($builder);
+        $product = $builder->getResult();
+        $product->showParts();
     }
 
 }

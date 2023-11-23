@@ -12,4 +12,5 @@ Route::controller(TestPatternController::class)->group(function () {
     Route::get('/singleton', 'singleton');
     Route::get('/factory-method', 'factoryMethod');
     Route::get('/abstract-factory', 'abstractFactory');
+    Route::get('/builder', 'builder');
 });
