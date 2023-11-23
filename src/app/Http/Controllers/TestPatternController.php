@@ -8,9 +8,13 @@ use App\Services\Factory\BicycleFactory;
 use App\Services\Factory\CarFactory;
 use App\Services\Factory_Method\ConcreteCreatorA;
 use App\Services\Factory_Method\Run;
+use App\Services\Prototype\BookBuilder;
 use App\Services\Singleton\Singleton;
 use App\Services\AbstractFactory\MacFactory;
 use App\Services\AbstractFactory\Run as RunAbstractFactory;
+use App\Services\Prototype\Book;
+use App\Services\Prototype\ConcretePrototype;
+
 
 
 class TestPatternController extends Controller
@@ -57,5 +61,22 @@ class TestPatternController extends Controller
         $product = $builder->getResult();
         $product->showParts();
     }
+
+    public function prototype()
+    {
+// Client code
+        $original = new ConcretePrototype("Original Property");
+
+// Clone the original object
+        $clone = $original->clone();
+
+// Modify the cloned object's property
+        $clone->setProperty("Modified Property");
+
+// Output the properties of both objects
+        echo "Original Property: " . $original->getProperty() . "</br>";
+        echo "Cloned Property: " . $clone->getProperty() . "</br>";
+    }
+
 
 }

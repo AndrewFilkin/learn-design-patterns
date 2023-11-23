@@ -13,4 +13,5 @@ Route::controller(TestPatternController::class)->group(function () {
     Route::get('/factory-method', 'factoryMethod');
     Route::get('/abstract-factory', 'abstractFactory');
     Route::get('/builder', 'builder');
+    Route::get('/prototype', 'prototype');
 });
