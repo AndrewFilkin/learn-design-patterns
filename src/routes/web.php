@@ -20,4 +20,5 @@ Route::controller(TestPatternController::class)->group(function () {
 Route::controller(TestStructuralPatternController::class)->group(function () {
     Route::get('/dependency-injection', 'dependencyInjection');
     Route::get('/registry', 'registry');
+    Route::get('/composite', 'composite');
 });
