@@ -14,6 +14,7 @@ use App\Services\Structural\Decorator\SimpleCoffee;
 use App\Services\Structural\Decorator\SugarDecorator;
 use App\Services\Structural\DependencyInjection\DatabaseConnection;
 use App\Services\Structural\DependencyInjection\UserService;
+use App\Services\Structural\Facade\Facade;
 use App\Services\Structural\Registry\PrototypeRegistry;
 use App\Services\Structural\Registry\ProductPrototype;
 use App\Services\Structural\Adapter\OldSystem;
@@ -109,6 +110,12 @@ class TestStructuralPatternController extends Controller
         $sugarMilkCoffee = new SugarDecorator($milkCoffee);
         echo "Cost of coffee with milk and sugar: $" . $sugarMilkCoffee->cost() . '</br>';
 
+    }
+
+    public function facade()
+    {
+        $facade = new Facade();
+        $facade->operationFacade();
     }
 
 }

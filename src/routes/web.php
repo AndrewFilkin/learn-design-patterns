@@ -24,4 +24,5 @@ Route::controller(TestStructuralPatternController::class)->group(function () {
     Route::get('/adapter', 'adapter');
     Route::get('/bridge', 'bridge');
     Route::get('/decorator', 'decorator');
+    Route::get('/facade', 'facade');
 });
