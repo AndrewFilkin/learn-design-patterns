@@ -9,6 +9,9 @@ use App\Services\Structural\DependencyInjection\DatabaseConnection;
 use App\Services\Structural\DependencyInjection\UserService;
 use App\Services\Structural\Registry\PrototypeRegistry;
 use App\Services\Structural\Registry\ProductPrototype;
+use App\Services\Structural\Adapter\OldSystem;
+use App\Services\Structural\Adapter\OldSystemAdapter;
+use App\Services\Structural\Adapter\SomeNewSystem;
 
 class TestStructuralPatternController extends Controller
 {
@@ -67,6 +70,13 @@ class TestStructuralPatternController extends Controller
         }
 
         printEmployeeDetails($manager2);
+    }
+
+    public function adapter()
+    {
+        $newSystem = new SomeNewSystem(new OldSystemAdapter(new OldSystem()));
+        $result = $newSystem->makeRequest();
+        echo $result;
     }
 
 }
