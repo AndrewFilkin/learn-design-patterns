@@ -9,6 +9,9 @@ use App\Services\Structural\Bridge\Square;
 use App\Services\Structural\Bridge\VectorRenderer;
 use App\Services\Structural\Composite\Developer;
 use App\Services\Structural\Composite\Manager;
+use App\Services\Structural\Decorator\MilkDecorator;
+use App\Services\Structural\Decorator\SimpleCoffee;
+use App\Services\Structural\Decorator\SugarDecorator;
 use App\Services\Structural\DependencyInjection\DatabaseConnection;
 use App\Services\Structural\DependencyInjection\UserService;
 use App\Services\Structural\Registry\PrototypeRegistry;
@@ -93,6 +96,19 @@ class TestStructuralPatternController extends Controller
 
         echo $circle->draw() . '</br>'; // Output: Drawing Circle using Vector Renderer
         echo $square->draw() . '</br>'; // Output: Drawing Square using Raster Renderer
+    }
+
+    public function decorator()
+    {
+        $simpleCoffee = new SimpleCoffee();
+        echo "Cost of simple coffee: $" . $simpleCoffee->cost() . '</br>';
+
+        $milkCoffee = new MilkDecorator($simpleCoffee);
+        echo "Cost of coffee with milk: $" . $milkCoffee->cost() . '</br>';
+
+        $sugarMilkCoffee = new SugarDecorator($milkCoffee);
+        echo "Cost of coffee with milk and sugar: $" . $sugarMilkCoffee->cost() . '</br>';
+
     }
 
 }
