@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Structural\Composite\Employee;
+use App\Services\Structural\Bridge\Circle;
+use App\Services\Structural\Bridge\RasterRenderer;
+use App\Services\Structural\Bridge\Square;
+use App\Services\Structural\Bridge\VectorRenderer;
 use App\Services\Structural\Composite\Developer;
 use App\Services\Structural\Composite\Manager;
 use App\Services\Structural\DependencyInjection\DatabaseConnection;
@@ -77,6 +81,18 @@ class TestStructuralPatternController extends Controller
         $newSystem = new SomeNewSystem(new OldSystemAdapter(new OldSystem()));
         $result = $newSystem->makeRequest();
         echo $result;
+    }
+
+    public function bridge()
+    {
+        $vectorRenderer = new VectorRenderer();
+        $rasterRenderer = new RasterRenderer();
+
+        $circle = new Circle($vectorRenderer);
+        $square = new Square($rasterRenderer);
+
+        echo $circle->draw() . '</br>'; // Output: Drawing Circle using Vector Renderer
+        echo $square->draw() . '</br>'; // Output: Drawing Square using Raster Renderer
     }
 
 }

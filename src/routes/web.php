@@ -22,4 +22,5 @@ Route::controller(TestStructuralPatternController::class)->group(function () {
     Route::get('/registry', 'registry');
     Route::get('/composite', 'composite');
     Route::get('/adapter', 'adapter');
+    Route::get('/bridge', 'bridge');
 });
