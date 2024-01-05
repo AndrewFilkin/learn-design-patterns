@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Services\Behavioral\Command\Light;
 use App\Services\Behavioral\Command\LightOnCommand;
 use App\Services\Behavioral\Command\RemoteControl;
+use App\Services\Behavioral\Mediator\ChatMediator;
+use App\Services\Behavioral\Mediator\User;
 use App\Services\Behavioral\State\Order;
 use App\Services\Behavioral\State\PendingState;
 use App\Services\Behavioral\Strategy\BitcoinPayment;
@@ -60,6 +62,26 @@ class TestBehavioralPatternController extends Controller
         // See basic documentation
     }
 
+    public function mediator()
+    {
+        // Usage
+        $chatMediator = new ChatMediator();
 
+        $user1 = new User('User 1');
+        $user2 = new User('User 2');
+        $user3 = new User('User 3');
+
+        $chatMediator->addColleague($user1);
+        $chatMediator->addColleague($user2);
+        $chatMediator->addColleague($user3);
+
+        $user1->setMediator($chatMediator);
+        $user2->setMediator($chatMediator);
+        $user3->setMediator($chatMediator);
+
+        $user1->sendMessage('Hello, everyone!');
+        $user2->sendMessage('Hi there!');
+        $user3->sendMessage('Hey, how are you?');
+    }
 
 }
