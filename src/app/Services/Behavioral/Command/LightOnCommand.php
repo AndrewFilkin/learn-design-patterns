@@ -15,4 +15,9 @@ class LightOnCommand implements \App\Contracts\Behavioral\Command\Command
     public function execute() {
         $this->light->turnOn();
     }
+
+    public function execute_light_off()
+    {
+        $this->light->turnOff();
+    }
 }

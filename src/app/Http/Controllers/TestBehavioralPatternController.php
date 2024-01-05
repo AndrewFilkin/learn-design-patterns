@@ -41,5 +41,7 @@ class TestBehavioralPatternController extends Controller
         $remote = new RemoteControl();
         $remote->setCommand($lightOnCommand);
         $remote->pressButton();
+        $remote->pressButtonLightOff(); // for test
+
     }
 }

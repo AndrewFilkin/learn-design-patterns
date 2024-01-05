@@ -17,4 +17,9 @@ class RemoteControl
     public function pressButton() {
         $this->command->execute();
     }
+
+    public function pressButtonLightOff() {
+        $this->command->execute_light_off();
+    }
+
 }
