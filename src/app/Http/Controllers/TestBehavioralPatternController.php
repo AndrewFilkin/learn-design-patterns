@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Services\Behavioral\Command\Light;
 use App\Services\Behavioral\Command\LightOnCommand;
 use App\Services\Behavioral\Command\RemoteControl;
+use App\Services\Behavioral\State\Order;
+use App\Services\Behavioral\State\PendingState;
 use App\Services\Behavioral\Strategy\BitcoinPayment;
 use App\Services\Behavioral\Strategy\CreditCardPayment;
 use App\Services\Behavioral\Strategy\PayPalPayment;
@@ -44,4 +46,13 @@ class TestBehavioralPatternController extends Controller
         $remote->pressButtonLightOff(); // for test
 
     }
+
+    public function state()
+    {
+        $order = new Order(new PendingState());
+        $order->processOrder(); // Output: Order is pending processing.
+        $order->processOrder(); // Output: Order is shipped.
+        $order->processOrder(); // Output: Order is delivered.
+    }
+
 }
