@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Behavioral\Command\Light;
+use App\Services\Behavioral\Command\LightOnCommand;
+use App\Services\Behavioral\Command\RemoteControl;
 use App\Services\Behavioral\Strategy\BitcoinPayment;
 use App\Services\Behavioral\Strategy\CreditCardPayment;
 use App\Services\Behavioral\Strategy\PayPalPayment;
@@ -28,5 +31,15 @@ class TestBehavioralPatternController extends Controller
         $bitcoinPayment = new BitcoinPayment("1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa");
         $cart->setPaymentStrategy($bitcoinPayment);
         $cart->checkout(200);
+    }
+
+    public function command()
+    {
+        $light = new Light();
+        $lightOnCommand = new LightOnCommand($light);
+
+        $remote = new RemoteControl();
+        $remote->setCommand($lightOnCommand);
+        $remote->pressButton();
     }
 }

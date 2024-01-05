@@ -30,4 +30,5 @@ Route::controller(TestStructuralPatternController::class)->group(function () {
 
 Route::controller(TestBehavioralPatternController::class)->group(function () {
     Route::get('/strategy', 'strategy');
+    Route::get('/command', 'command');
 });
