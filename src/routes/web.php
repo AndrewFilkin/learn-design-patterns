@@ -32,4 +32,5 @@ Route::controller(TestBehavioralPatternController::class)->group(function () {
     Route::get('/strategy', 'strategy');
     Route::get('/command', 'command');
     Route::get('/state', 'state');
+    Route::get('/iterator', 'iterator');
 });

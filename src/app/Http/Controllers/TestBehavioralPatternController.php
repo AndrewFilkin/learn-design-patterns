@@ -55,4 +55,11 @@ class TestBehavioralPatternController extends Controller
         $order->processOrder(); // Output: Order is delivered.
     }
 
+    public function iterator()
+    {
+        // See basic documentation
+    }
+
+
+
 }
