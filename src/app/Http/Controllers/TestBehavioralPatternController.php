@@ -9,6 +9,8 @@ use App\Services\Behavioral\Mediator\ChatMediator;
 use App\Services\Behavioral\Mediator\User;
 use App\Services\Behavioral\Memento\Editor;
 use App\Services\Behavioral\Memento\History;
+use App\Services\Behavioral\Observer\NewsAgency;
+use App\Services\Behavioral\Observer\NewsReader;
 use App\Services\Behavioral\State\Order;
 use App\Services\Behavioral\State\PendingState;
 use App\Services\Behavioral\Strategy\BitcoinPayment;
@@ -103,6 +105,24 @@ class TestBehavioralPatternController extends Controller
         $editor->restoreFromMemento($history->getMemento(0));
 
         echo "Current content: " . $editor->getContent(); // Output: Current content: First content
+    }
+
+    public function observer()
+    {
+        $newsAgency = new NewsAgency();
+
+        $reader1 = new NewsReader("Reader 1");
+        $reader2 = new NewsReader("Reader 2");
+
+        $newsAgency->addObserver($reader1);
+        $newsAgency->addObserver($reader2);
+
+        $newsAgency->setNews("Breaking News: Observer Pattern Example!");
+
+        $newsAgency->removeObserver($reader1);
+
+        $newsAgency->setNews("Latest updates: Observer Pattern in PHP!");
+
     }
 
 }
