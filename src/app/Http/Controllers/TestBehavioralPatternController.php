@@ -17,6 +17,7 @@ use App\Services\Behavioral\Strategy\BitcoinPayment;
 use App\Services\Behavioral\Strategy\CreditCardPayment;
 use App\Services\Behavioral\Strategy\PayPalPayment;
 use App\Services\Behavioral\Strategy\ShoppingCart;
+use App\Services\Behavioral\TemplateMethod\ConcreteClass;
 use Illuminate\Http\Request;
 
 class TestBehavioralPatternController extends Controller
@@ -122,7 +123,12 @@ class TestBehavioralPatternController extends Controller
         $newsAgency->removeObserver($reader1);
 
         $newsAgency->setNews("Latest updates: Observer Pattern in PHP!");
+    }
 
+    public function templateMethod()
+    {
+        $object = new ConcreteClass();
+        $object->templateMethod();
     }
 
 }
