@@ -7,6 +7,8 @@ use App\Services\Behavioral\Command\LightOnCommand;
 use App\Services\Behavioral\Command\RemoteControl;
 use App\Services\Behavioral\Mediator\ChatMediator;
 use App\Services\Behavioral\Mediator\User;
+use App\Services\Behavioral\Memento\Editor;
+use App\Services\Behavioral\Memento\History;
 use App\Services\Behavioral\State\Order;
 use App\Services\Behavioral\State\PendingState;
 use App\Services\Behavioral\Strategy\BitcoinPayment;
@@ -82,6 +84,25 @@ class TestBehavioralPatternController extends Controller
         $user1->sendMessage('Hello, everyone!');
         $user2->sendMessage('Hi there!');
         $user3->sendMessage('Hey, how are you?');
+    }
+
+    public function memento()
+    {
+        $editor = new Editor();
+        $history = new History();
+
+// Set initial content
+        $editor->setContent("First content");
+        $history->addMemento($editor->createMemento());
+
+// Update content
+        $editor->setContent("Second content");
+        $history->addMemento($editor->createMemento());
+
+// Restore to previous state
+        $editor->restoreFromMemento($history->getMemento(0));
+
+        echo "Current content: " . $editor->getContent(); // Output: Current content: First content
     }
 
 }
