@@ -18,6 +18,9 @@ use App\Services\Behavioral\Strategy\CreditCardPayment;
 use App\Services\Behavioral\Strategy\PayPalPayment;
 use App\Services\Behavioral\Strategy\ShoppingCart;
 use App\Services\Behavioral\TemplateMethod\ConcreteClass;
+use App\Services\Behavioral\Visitor\AreaCalculator;
+use App\Services\Behavioral\Visitor\Circle;
+use App\Services\Behavioral\Visitor\Square;
 use Illuminate\Http\Request;
 
 class TestBehavioralPatternController extends Controller
@@ -129,6 +132,21 @@ class TestBehavioralPatternController extends Controller
     {
         $object = new ConcreteClass();
         $object->templateMethod();
+    }
+
+    public function visitor()
+    {
+        $shapes = [
+            new Circle(5),
+            new Square(4),
+            new Circle(3),
+        ];
+
+        $areaCalculator = new AreaCalculator();
+
+        foreach ($shapes as $shape) {
+            $shape->accept($areaCalculator);
+        }
     }
 
 }

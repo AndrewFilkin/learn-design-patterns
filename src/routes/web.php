@@ -37,4 +37,5 @@ Route::controller(TestBehavioralPatternController::class)->group(function () {
     Route::get('/memento', 'memento');
     Route::get('/observer', 'observer');
     Route::get('/templateMethod', 'templateMethod');
+    Route::get('/visitor', 'visitor');
 });
